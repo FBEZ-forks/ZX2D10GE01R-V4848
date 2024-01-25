@@ -1,15 +1,14 @@
-idf_component_get_property(LVGL_DIR lvgl COMPONENT_DIR)
-
-file(GLOB LVGL_DEMOS 
-    ${LVGL_DIR}/demos/benchmark
-    ${LVGL_DIR}/demos/benchmark/assets
-)
+set(LV_DEMO_DIR ../components/lvgl/demos)
+file(GLOB_RECURSE LV_DEMOS_SOURCES ${LV_DEMO_DIR}/*.c)
+file(GLOB_RECURSE LV_DEMOS_BENCHMARK ${LV_DEMO_DIR}/benchmark/*.c)
 
 idf_component_register(
-    SRC_DIRS ${DIRS} ${LVGL_DEMOS} "."
-    INCLUDE_DIRS "." ${LVGL_DEMOS} ${DIRS}
-    REQUIRES esp_lcd driver lvgl esp_timer button mt8901
-)
+    SRCS "main.c" "screen.c" ${LV_DEMOS_SOURCES} ${LV_DEMOS_BENCHMARK}
+    INCLUDE_DIRS "." ${LV_DEMO_DIR} ${LV_DEMO_DIR}/benchmark)
 
-target_compile_options(${COMPONENT_LIB} PRIVATE "-Wno-format")
-
+message(LV_DEMOS_SOURCES="${LV_DEMOS_SOURCES}")
+set_source_files_properties(
+    ${LV_DEMOS_SOURCES}
+    PROPERTIES COMPILE_OPTIONS
+    "-DLV_LVGL_H_INCLUDE_SIMPLE;-Wno-format;"
+    )
