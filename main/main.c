@@ -6,22 +6,21 @@
 #include "rom/gpio.h"
 #include "driver/gpio.h"
 #include "esp_log.h"
-#include "lvgl.h"
-#include "board.h"
+#include "WT32S3_S1.h"
 #include "esp_timer.h"
+#include "lvgl.h"
 
 #define TAG "MAIN"
 
-extern void lv_demo_benchmark(void);
+//extern void lv_demo_benchmark(void);
 
 static void increase_lvgl_tick(void* arg) {
     lv_tick_inc(portTICK_PERIOD_MS);
 }
 
-extern void screen_init(void);
 
 void lvgl_task(void* arg) {
-    screen_init();
+    WT32S3_S1_screen_init();
 
     // Tick interface for LVGL
     const esp_timer_create_args_t periodic_timer_args = {
@@ -33,7 +32,7 @@ void lvgl_task(void* arg) {
     esp_timer_start_periodic(periodic_timer, portTICK_PERIOD_MS * 1000);
 
 
-    lv_demo_benchmark();
+    //lv_demo_benchmark();
 
     for (;;) {
         lv_task_handler();

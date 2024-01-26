@@ -3,7 +3,7 @@ file(GLOB_RECURSE LV_DEMOS_SOURCES ${LV_DEMO_DIR}/*.c)
 file(GLOB_RECURSE LV_DEMOS_BENCHMARK ${LV_DEMO_DIR}/benchmark/*.c)
 
 idf_component_register(
-    SRCS "main.c" "screen.c" ${LV_DEMOS_SOURCES} ${LV_DEMOS_BENCHMARK}
+    SRCS "main.c" ${LV_DEMOS_SOURCES} ${LV_DEMOS_BENCHMARK}
     INCLUDE_DIRS "." ${LV_DEMO_DIR} ${LV_DEMO_DIR}/benchmark)
 
 message(LV_DEMOS_SOURCES="${LV_DEMOS_SOURCES}")
