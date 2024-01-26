@@ -1,0 +1,12 @@
+description: BSP for WT32S3-S1
+targets:
+  - esp32s3
+dependencies:
+  idf: ">=5.0.1"
+  lvgl/lvgl:
+    version: "^8"
+    public: true
+  button:
+    version: ">=2.5,<4.0"
+    public: true
+
