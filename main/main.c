@@ -9,10 +9,11 @@
 #include "lvgl.h"
 #include "board.h"
 #include "esp_timer.h"
+#include "thermostat_demo.h"
 
 #define TAG "MAIN"
 
-extern void lv_demo_benchmark(void);
+//extern void lv_demo_benchmark(void);
 
 static void increase_lvgl_tick(void* arg) {
     lv_tick_inc(portTICK_PERIOD_MS);
@@ -33,8 +34,8 @@ void lvgl_task(void* arg) {
     esp_timer_start_periodic(periodic_timer, portTICK_PERIOD_MS * 1000);
 
 
-    lv_demo_benchmark();
-
+    //lv_demo_benchmark();
+    thermostat_demo();
     for (;;) {
         lv_task_handler();
         vTaskDelay(pdMS_TO_TICKS(10));
