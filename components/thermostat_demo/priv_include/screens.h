@@ -6,5 +6,6 @@
 
 lv_obj_t * welcome_screen(void);
 lv_obj_t * menu_screen(void);
+lv_obj_t * rotary_screen(void);
 
 #endif

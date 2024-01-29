@@ -26,6 +26,7 @@
 #define ECO_STEP(x) x? ECO_O(x):0
 
 static button_t *g_btn;
+lv_indev_t * knob_indev;
 
 static esp_lcd_panel_handle_t g_panel_handle = NULL;
 
@@ -395,7 +396,9 @@ void qmsd_rgb_spi_init() {
 void __qmsd_encoder_read(lv_indev_drv_t *drv, lv_indev_data_t *data)
 {
     static int16_t cont_last = 0;
+
     int16_t cont_now = mt8901_get_count();
+	//printf("Read! %d\n", cont_now);
     data->enc_diff = ECO_STEP(cont_now - cont_last);
     cont_last = cont_now;
     if (button_isPressed(g_btn)){
@@ -403,19 +406,21 @@ void __qmsd_encoder_read(lv_indev_drv_t *drv, lv_indev_data_t *data)
     } else {
         data->state = LV_INDEV_STATE_REL;
     }
+
+
 }
 
 void __qsmd_encoder_init(void)
 {
-    static lv_indev_drv_t indev_drv;
-
+   
+	static lv_indev_drv_t indev_drv; 
     g_btn = button_attch(3, 1, 10);
     mt8901_init(5,6);
 
     lv_indev_drv_init(&indev_drv);
     indev_drv.read_cb = __qmsd_encoder_read;
     indev_drv.type = LV_INDEV_TYPE_ENCODER;
-    lv_indev_drv_register(&indev_drv);
+    knob_indev = lv_indev_drv_register(&indev_drv);
 }
 
 void screen_init(void) {

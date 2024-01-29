@@ -2,6 +2,6 @@
 #define LAYOUT_H
 
 #define CENTRAL_PANEL_RADIUS 400
-#define DEFAULT_BUTTON_SIZE 30
+#define DEFAULT_BUTTON_SIZE 40
 
 #endif
