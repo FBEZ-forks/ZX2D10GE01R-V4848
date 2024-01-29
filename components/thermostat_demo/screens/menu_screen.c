@@ -9,7 +9,10 @@ lv_obj_t * menu_screen(void){
     lv_obj_set_style_size(central_panel,CENTRAL_PANEL_RADIUS,0);
     lv_obj_center(central_panel);
     lv_obj_t * button_1 = create_simple_button(central_panel,"Button 1");
+    lv_obj_set_pos(button_1, lv_pct(30),lv_pct(20));
     lv_obj_t * button_2 = create_simple_button(central_panel,"Button 2");
+    lv_obj_set_pos(button_2, lv_pct(30),lv_pct(50));
     lv_obj_t * button_3 = create_simple_button(central_panel,"Button 3");
+    lv_obj_set_pos(button_3, lv_pct(30),lv_pct(80));
     return main;
 }
