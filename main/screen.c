@@ -59,7 +59,8 @@ void qmsd_rgb_init(esp_lcd_rgb_panel_config_t *panel_config)
     esp_lcd_rgb_panel_get_frame_buffer(g_panel_handle, 2, &buf1, &buf2);
     lv_disp_draw_buf_init(&draw_buf, buf1, buf2, buffer_size);
 
-    lv_disp_drv_init(&disp_drv);         
+    lv_disp_drv_init(&disp_drv);     
+	disp_drv.full_refresh = 1;    
     disp_drv.flush_cb = __qsmd_rgb_disp_flush;
     disp_drv.draw_buf = &draw_buf;
     disp_drv.hor_res = panel_config->timings.h_res;
@@ -399,7 +400,7 @@ void __qmsd_encoder_read(lv_indev_drv_t *drv, lv_indev_data_t *data)
 
     int16_t cont_now = mt8901_get_count();
 	//printf("Read! %d\n", cont_now);
-    data->enc_diff = ECO_STEP(cont_now - cont_last);
+    data->enc_diff = cont_now - cont_last;//ECO_STEP(cont_now - cont_last);
 	//printf("Encoder! %d\n", data->enc_diff);
     cont_last = cont_now;
     if (button_isPressed(g_btn)){

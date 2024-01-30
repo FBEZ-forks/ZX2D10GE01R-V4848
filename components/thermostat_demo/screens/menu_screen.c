@@ -43,15 +43,21 @@ lv_obj_t * menu_screen(void){
 
 
 void button_1_cb(lv_event_t * e){
+    if(e->code==LV_EVENT_FOCUSED || e->code == LV_EVENT_DEFOCUSED || e->code == LV_EVENT_CLICKED){
     printf("Clicked button 1 -- ONE \n");
     printf("Event:%d\n", e->code);
+    }
 }
 
 void button_2_cb(lv_event_t * e){
+    if(e->code==LV_EVENT_FOCUSED || e->code == LV_EVENT_DEFOCUSED || e->code == LV_EVENT_CLICKED){
     printf("Clicked button 2 -- TWO \n");
     printf("Event:%d\n", e->code);
+    }
 }
 void button_3_cb(lv_event_t * e){
+    if(e->code==LV_EVENT_FOCUSED || e->code == LV_EVENT_DEFOCUSED || e->code == LV_EVENT_CLICKED){
     printf("Clicked button 3 -- THREE \n");
     printf("Event:%d\n", e->code);
+    }
 }

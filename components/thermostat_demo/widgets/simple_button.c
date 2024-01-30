@@ -10,6 +10,8 @@ lv_obj_t * create_simple_button(lv_obj_t * parent, char * label_text){
     lv_obj_set_style_bg_color(button,lv_color_hex(0xBBAAFF),LV_PART_MAIN | LV_STATE_PRESSED);
     lv_obj_center(label);
     lv_obj_set_size(button,DEFAULT_BUTTON_SIZE*4, DEFAULT_BUTTON_SIZE);
+    lv_obj_set_scrollbar_mode(button, LV_SCROLLBAR_MODE_OFF);
+    lv_obj_set_scrollbar_mode(label, LV_SCROLLBAR_MODE_OFF);
     //lv_obj_set_style_bg_color(label, lv_color_hex(0x00FFAA),0);
     return button;
 }
