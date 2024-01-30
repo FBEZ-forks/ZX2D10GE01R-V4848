@@ -15,8 +15,9 @@ void thermostat_demo(void)
     printf("indev group %p\n",knob_indev->group);
 
     //lv_obj_t * welcome_scr = welcome_screen();
-    //lv_obj_t * menu_scr = menu_screen();
-    lv_obj_t * rotary_scr = rotary_screen();
-    lv_scr_load(rotary_scr);
+    lv_obj_t * menu_scr = menu_screen();
+    //lv_obj_t * rotary_scr = rotary_screen();
+    lv_scr_load(menu_scr);
 
 }
+  

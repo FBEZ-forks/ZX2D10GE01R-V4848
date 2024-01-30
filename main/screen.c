@@ -400,12 +400,14 @@ void __qmsd_encoder_read(lv_indev_drv_t *drv, lv_indev_data_t *data)
     int16_t cont_now = mt8901_get_count();
 	//printf("Read! %d\n", cont_now);
     data->enc_diff = ECO_STEP(cont_now - cont_last);
+	//printf("Encoder! %d\n", data->enc_diff);
     cont_last = cont_now;
     if (button_isPressed(g_btn)){
-        data->state = LV_INDEV_STATE_PR;
+        data->state = LV_INDEV_STATE_PRESSED;
     } else {
-        data->state = LV_INDEV_STATE_REL;
+        data->state = LV_INDEV_STATE_RELEASED;
     }
+	//printf("State! %d\n",data->state);
 
 
 }
@@ -414,7 +416,7 @@ void __qsmd_encoder_init(void)
 {
    
 	static lv_indev_drv_t indev_drv; 
-    g_btn = button_attch(3, 1, 10);
+    g_btn = button_attch(BTN_PIN, 0, 10);
     mt8901_init(5,6);
 
     lv_indev_drv_init(&indev_drv);
